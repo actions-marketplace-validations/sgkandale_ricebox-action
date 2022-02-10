@@ -16,11 +16,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: install go.rice
-      run: go install github.com/GeertJohan/go.rice@latest
-      shell: bash
     - name: install rice
-      run: go install github.com/GeertJohan/go.rice/rice
+      run: go install github.com/GeertJohan/go.rice/rice@latest
       shell: bash
     - name: change directory to path-to-main
       run: cd ${{ inputs.path-to-main }}
