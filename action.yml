@@ -16,9 +16,18 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: cd ${{ inputs.path-to-main }}
+    - name: install go.rice
+      run: go install github.com/GeertJohan/go.rice
       shell: bash
-    - run: go build -o ${{ inputs.output-file }}
+    - name: install rice
+      run: go install github.com/GeertJohan/go.rice/rice
       shell: bash
-    - run: rice append -i ${{ inputs.invoker-package }} --exec ${{ inputs.output-file }}
+    - name: change directory to path-to-main
+      run: cd ${{ inputs.path-to-main }}
+      shell: bash
+    - name: build executable
+      run: go build -o ${{ inputs.output-file }}
+      shell: bash
+    - name: append static files
+      run: rice append -i ${{ inputs.invoker-package }} --exec ${{ inputs.output-file }}
       shell: bash
