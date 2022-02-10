@@ -16,7 +16,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: go build ${{ inputs.path-to-main }} -o ${{ output-file }}
+    - run: go build ${{ inputs.path-to-main }} -o ${{ inputs.output-file }}
       shell: bash
-    - run: rice append -i ${{ invoker-package }} --exec ${{ output-file }}
+    - run: rice append -i ${{ inputs.invoker-package }} --exec ${{ inputs.output-file }}
       shell: bash
