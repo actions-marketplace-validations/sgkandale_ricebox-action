@@ -20,7 +20,7 @@ runs:
       run: go install github.com/GeertJohan/go.rice@latest
       shell: bash
     - name: install rice
-      run: go install github.com/GeertJohan/go.rice/rice@latest
+      run: go install github.com/GeertJohan/go.rice/rice
       shell: bash
     - name: change directory to path-to-main
       run: cd ${{ inputs.path-to-main }}
