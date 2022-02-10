@@ -1,0 +1,22 @@
+name: "Ricebox Action"
+description: "Publish Go package with Ricebox"
+inputs:
+  path-to-main:
+    description: "Path to main.go"
+    required: true
+    default: "."
+  invoker-package:
+    description: "Package which invokes the static files"
+    required: true
+    default: "static"
+  output-file:
+    description: "Output file"
+    required: true
+    default: "main"
+runs:
+  using: "composite"
+  steps:
+    - run: go build ${{ inputs.path-to-main }} -o ${{ output-file }}
+      shell: bash
+    - run: rice append -i garbagelb/adminServer --exec ${{ output-file }}
+      shell: bash
