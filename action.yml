@@ -18,5 +18,5 @@ runs:
   steps:
     - run: go build ${{ inputs.path-to-main }} -o ${{ output-file }}
       shell: bash
-    - run: rice append -i garbagelb/adminServer --exec ${{ output-file }}
+    - run: rice append -i ${{ invoker-package }} --exec ${{ output-file }}
       shell: bash
